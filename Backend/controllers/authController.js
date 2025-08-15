@@ -123,7 +123,8 @@ const login = async (req, res) => {
     res.cookie('jwt', token, {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       httpOnly: true, // Only accessible by server
-      secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+      secure: true,
+      // secure: process.env.NODE_ENV === 'production', // HTTPS only in production
       sameSite: 'None'
     });
 
