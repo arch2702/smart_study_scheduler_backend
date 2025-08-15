@@ -21,7 +21,7 @@ scheduleReviewNotifier();
 // app.use(cors());
 app.use(
   cors({
-    origin: 'http://smart-study-scheduler-frontend.vercel.app/',
+    origin: true,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
