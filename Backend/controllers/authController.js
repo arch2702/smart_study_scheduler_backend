@@ -58,7 +58,7 @@ const register = async (req, res) => {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       httpOnly: true, // Only accessible by server
       secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-      sameSite: 'None'
+      sameSite: 'None' 
     });
 
     // Send response
@@ -121,7 +121,6 @@ const login = async (req, res) => {
 
     // Set JWT token in cookie
     res.cookie('jwt', token, {
-
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       httpOnly: true, // Only accessible by server
       secure: process.env.NODE_ENV === 'production', // HTTPS only in production
