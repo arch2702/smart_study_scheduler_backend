@@ -121,17 +121,11 @@ const login = async (req, res) => {
 
     // Set JWT token in cookie
     res.cookie('jwt', token, {
-       httpOnly: true,       // not accessible via JS
-            secure: false,        // set to true if using HTTPS
-            sameSite: 'Lax',      // works for most normal redirects
-            path: '/',            // send for all paths
-            maxAge: 1000 * 60 * 60 // 1 hour
 
-      // maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-      // httpOnly: true, // Only accessible by server
-      // secure: true,
-      // // secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-      // sameSite: 'None'
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      httpOnly: true, // Only accessible by server
+      secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+      sameSite: 'strict'
     });
 
     // Send response
