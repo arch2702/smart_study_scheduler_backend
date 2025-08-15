@@ -21,12 +21,22 @@ scheduleReviewNotifier();
 // app.use(cors());
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: true,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
+
+// const corsConfig = {
+//     origin: true,
+//     credentials: true,
+// };
+// app.use(cors(corsConfig));
+
+
+
+// app.options("*", cors(corsConfig));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
