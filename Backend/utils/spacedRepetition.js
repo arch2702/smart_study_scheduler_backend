@@ -16,16 +16,16 @@ const computeNextReview = (topic) => {
   if (intervalDays === 0) {
     switch (topic.difficulty) {
       case 'easy':
-        intervalDays = 3;
+        intervalDays = 15;
         break;
       case 'medium':
-        intervalDays = 2;
+        intervalDays = 10;
         break;
       case 'hard':
-        intervalDays = 1;
+        intervalDays = 7;
         break;
       default:
-        intervalDays = 2; // fallback to medium
+        intervalDays = 10; // fallback to medium
     }
   } else {
     // Double the interval for spaced repetition growth
@@ -66,13 +66,13 @@ const isDue = (topic) => {
 const getDefaultInterval = (difficulty) => {
   switch (difficulty) {
     case 'easy':
-      return 3;
+      return 15;
     case 'medium':
-      return 2;
+      return 10;
     case 'hard':
-      return 1;
+      return 7;
     default:
-      return 2;
+      return 10;
   }
 };
 
@@ -84,13 +84,13 @@ const getDefaultInterval = (difficulty) => {
 const getReviewPoints = (difficulty) => {
   switch (difficulty) {
     case 'easy':
-      return 2;
+      return 1;
     case 'medium':
-      return 3;
+      return 2;
     case 'hard':
-      return 5;
-    default:
       return 3;
+    default:
+      return 2;
   }
 };
 

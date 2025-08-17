@@ -18,6 +18,7 @@ function splitIntoChunks(text, maxLen = MAX_CHUNK_SIZE) {
   return chunks;
 }
 
+ // Call the Gemini API to generate JSON responses for each chunk
 async function callGeminiForJSON(prompt, retries = 3) {
   if (!GEMINI_API_KEY) {
     throw new Error('GEMINI_API_KEY is not set');
