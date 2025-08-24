@@ -18,7 +18,7 @@ const createReviewNotification = async (topic, subject) => {
     });
 
     if (existingNotification) {
-      console.log(`Notification already exists for topic: ${topic.title}`);
+      // console.log(`Notification already exists for topic: ${topic.title}`);
       return;
     }
 
@@ -54,7 +54,7 @@ const checkDueReviews = async () => {
       return;
     }
 
-    console.log(`Found ${dueTopics.length} topics due for review`);
+    // console.log(`Found ${dueTopics.length} topics due for review`);
 
     // Group topics by user for batch processing
     const topicsByUser = {};
