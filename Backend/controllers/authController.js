@@ -57,10 +57,9 @@ const register = async (req, res) => {
     res.cookie('jwt', token, {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       httpOnly: true, // Only accessible by server
-      // secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-      secure: true,
-      sameSite: 'None'  
-      // sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax'  
+      secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+      // sameSite: 'None'  
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax'  
     });
 
     // Send response
@@ -121,16 +120,15 @@ const login = async (req, res) => {
     // Generate token
     const token = await generateToken(user._id);
 
-
-    
     // Set JWT token in cookie
-      res.cookie('jwt', token, {
+    const isProduction = process.env.NODE_ENV === 'production';
+    res.cookie('jwt', token, {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       httpOnly: true, // Only accessible by server
-      // secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-      secure: true,
-      sameSite: 'None'  
-      // sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax'
+      secure: isProduction, // Must be true if sameSite=None
+      sameSite: isProduction ? 'None' : 'Lax',
+      path: '/', // Ensure cookie is sent for all paths
+      domain: isProduction ? '.yourdomain.com' : undefined // Set your production domain
     });
 
     // Send response
@@ -196,14 +194,11 @@ const logout = async (req, res) => {
   try {
     // Clear JWT cookie with same options as set
     res.clearCookie('jwt', {
-      maxAge :0,
       httpOnly: true,
-      secure: true,
-      // secure: process.env.NODE_ENV === 'production',
-      sameSite: 'None'
-      // sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
-      // path: '/',
-      // domain: process.env.NODE_ENV === 'production' ? '.yourdomain.com' : undefined
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+      path: '/',
+      domain: process.env.NODE_ENV === 'production' ? '.yourdomain.com' : undefined
     });
 
     res.json({
