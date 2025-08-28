@@ -124,15 +124,13 @@ const login = async (req, res) => {
 
     
     // Set JWT token in cookie
-     // Set JWT token in cookie
-    const isProduction = process.env.NODE_ENV === 'production';
-    res.cookie('jwt', token, {
+      res.cookie('jwt', token, {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       httpOnly: true, // Only accessible by server
-      secure: isProduction, // Must be true if sameSite=None
-      sameSite: isProduction ? 'None' : 'Lax',
-      path: '/', // Ensure cookie is sent for all paths
-      domain: isProduction ? '.yourdomain.com' : undefined // Set your production domain
+      secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+      // secure: true,
+      // sameSite: 'None'  
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax'
     });
 
     // Send response
