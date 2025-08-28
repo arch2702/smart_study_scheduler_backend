@@ -59,7 +59,7 @@ const register = async (req, res) => {
       httpOnly: true, // Only accessible by server
       // secure: process.env.NODE_ENV === 'production', // HTTPS only in production
       secure: true,
-      // sameSite: 'None'  
+      sameSite: 'None'  
       // sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax'  
     });
 
@@ -129,7 +129,7 @@ const login = async (req, res) => {
       httpOnly: true, // Only accessible by server
       // secure: process.env.NODE_ENV === 'production', // HTTPS only in production
       secure: true,
-      // sameSite: 'None'  
+      sameSite: 'None'  
       // sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax'
     });
 
@@ -200,7 +200,7 @@ const logout = async (req, res) => {
       httpOnly: true,
       secure: true,
       // secure: process.env.NODE_ENV === 'production',
-      // sameSite: 'None',
+      sameSite: 'None'
       // sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
       // path: '/',
       // domain: process.env.NODE_ENV === 'production' ? '.yourdomain.com' : undefined
